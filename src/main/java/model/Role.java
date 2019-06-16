@@ -5,7 +5,7 @@
  */
 package model;
 
-public class Role extends Id{
+public class Role {
     private EnumRoles descricao;
     
     public Role(EnumRoles desc){

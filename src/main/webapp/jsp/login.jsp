@@ -27,7 +27,7 @@
                 <div class="card my-4">
                 <h5 class="card-header">Login</h5>
                 <div class="card-body">
-            <form class="baseForm" action="Autenticador.action" method="post">
+            <form class="baseForm" action="Home" method="post">
                 <div class="form-group">
                     <div class="input-icon">
                     <input type="text" id="sender-titulo" class="form-control" name="numeroTitulo" placeholder="Número do Título" required>

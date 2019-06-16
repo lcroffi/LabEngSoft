@@ -16,19 +16,19 @@
         <ul class="navbar-nav ml-auto">
         <%
             	for(Role p: u.getRoles()){
-                if( p.getDescricao().equals(EnumRoles.USUARIO_COMUM) ){
-                  out.print("<li class=\"nav-item\"><a class=\"nav-link\" href=\"${pageContext.request.contextPath}/Votar\">Votar</a></li>" +
-                            "<li class=\"nav-item active\"> <a class=\"nav-link\" href=\"#\">Home</a><span class=\"sr-only\">(current)</span></li>" +
-                            "<li class=\"nav-item\"><a class=\"nav-link\" href=\"${pageContext.request.contextPath}\">Sair</a></li>");
-                }
-                if( p.getDescricao().equals(EnumRoles.MESARIO) ){
-                  out.print("<li class=\"nav-item\"><a class=\"nav-link\" href=\"${pageContext.request.contextPath}/Habilitar\">Cadastro</a></li>");
-                }
-                if( p.getDescricao().equals(EnumRoles.CHEFE) ){
-                  out.print("<li class=\"nav-item active\"> <a class=\"nav-link\" href=\"${pageContext.request.contextPath}/EmitirRelatorio\">Relatório</a></li>");
-                }                                            
+                if( p.getDescricao().equals(EnumRoles.USUARIO_COMUM) ){%>
+                  <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/Votar?id=<% out.print(u.getId()); %>">Votar</a></li>
+                  <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/Home?id=<% out.print(u.getId()); %>">Home</a><span class="sr-only">(current)</span></li>
+                <%}
+                if( p.getDescricao().equals(EnumRoles.MESARIO) ){%>
+                  <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/HabilitarVoto?id=<% out.print(u.getId()); %>">Cadastro</a></li>
+                <%}
+                if( p.getDescricao().equals(EnumRoles.CHEFE) ){%>
+                  <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/Relatorio?id=<% out.print(u.getId()); %>">Relatório</a></li>
+                <%}                                            
               }
         %>
+        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}">Sair</a></li>
         </ul>
       </div>
     </div>

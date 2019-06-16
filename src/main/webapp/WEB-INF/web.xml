@@ -33,7 +33,27 @@ and open the template in the editor.
     
     <servlet-mapping>
         <servlet-name>Autenticador</servlet-name>
-        <url-pattern>/Autenticador.action</url-pattern>
+        <url-pattern>/Home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HabilitarVoto</servlet-name>
+        <servlet-class>controller.HabilitarVoto</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>HabilitarVoto</servlet-name>
+        <url-pattern>/HabilitarVoto</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Votacao</servlet-name>
+        <servlet-class>controller.Votacao</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Votacao</servlet-name>
+        <url-pattern>/Votar</url-pattern>
     </servlet-mapping>
     
 </web-app>
