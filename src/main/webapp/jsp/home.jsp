@@ -16,7 +16,8 @@
     </head>
     <body>
         <%
-        	User u = (User)request.getAttribute("usuarioLogado");
+          User u = (User)request.getAttribute("usuarioLogado");
+          String confirm = (String)request.getAttribute("VotoConfirmado");
         %>
         <%@include file= "menu.jsp" %>      
         <!-- Page Content -->
@@ -25,6 +26,14 @@
     <div class="row">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
+          <% out.print(confirm); %>
+          <% if (confirm !=null) { %>
+          </br>
+          </br>
+          </br>
+          <h1 class="mt-4">Voto registrado.</h1>
+
+          <% } else { %>
     </br>
     </br>
     </br>
@@ -34,9 +43,12 @@
         <li><%= new String(p.getDescricao().toString().getBytes(),"UTF-8") %></li>
         <%} %>
         </ul>
+        <%} %>
+
     </br>
     </div>
     <div class="col-sm-3"></div>
+    
 
   </div>
   </div>

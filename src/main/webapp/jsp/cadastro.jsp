@@ -91,9 +91,10 @@
                 </table>
               </div>
               </div>
-              <form action="Home" method="get" class="authorization-form">
+              <form action="HabilitarVoto" method="get" class="authorization-form">
                   <div class="form-group">
-                    <input type="hidden" class="form-control" value="confirm">            
+                    <input type="hidden" name="id" value="<% out.print(u.getId()); %>">
+                    <input type="hidden" name="habilitar" value="<% out.print(us.getId()); %>">
                     <button type="submit" class="btn btn-primary">Habilitar Votação</button>
                   </div>
                 </form>

@@ -55,6 +55,16 @@ and open the template in the editor.
         <servlet-name>Votacao</servlet-name>
         <url-pattern>/Votar</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Relatorio</servlet-name>
+        <servlet-class>controller.Relatorio</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Relatorio</servlet-name>
+        <url-pattern>/Relatorio</url-pattern>
+    </servlet-mapping>
     
 </web-app>
 

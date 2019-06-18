@@ -65,14 +65,20 @@ public class Autenticador extends HttpServlet {
         String id = req.getParameter("id");   
         ServletContext sc = req.getServletContext();
         User uLogado = null;
+        String confirm = req.getParameter("confirm");
    
         if (id != null) {
             uLogado = usImpl.findById(Integer.parseInt(id));
             req.setAttribute("usuarioLogado", uLogado);
+            
+            if (confirm != null) {
+                req.setAttribute("VotoConfirmado", confirm);
+            }    
 
             try{
                 sc.getRequestDispatcher("/jsp/home.jsp").forward(req, resp);            
                 } catch (Exception e){}
         }
+
     }
 }

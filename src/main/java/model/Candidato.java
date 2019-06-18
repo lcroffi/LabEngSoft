@@ -45,7 +45,7 @@ public class Candidato {
         this.nomeCandidato = nomeCandidato;
     }
 
-    public String partido(){
+    public String getPartido(){
         return partido;
     }
 

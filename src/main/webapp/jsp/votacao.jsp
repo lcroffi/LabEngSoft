@@ -1,5 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
+<%@page import="model.Candidato"%>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,58 +16,36 @@
 
     <body>
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-              <a class="navbar-brand" href="index.html">Sistema de Votação</a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                  <a class="nav-link" href="./Votar">Votar</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./Home">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="./">Sair</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+      <%
+      User u = (User)request.getAttribute("usuarioLogado");
+      %>
+      <%@include file= "menu.jsp" %>
 
   <!-- Content section Start --> 
   <section id="content">
   </br></br>
+  <% if (!u.getAllowVote() && !u.getDone()) {
+
+        Candidato prefeito = (Candidato)request.getAttribute("prefeito");
+        Candidato vice = (Candidato)request.getAttribute("vice");
+        if (prefeito == null && vice == null) {
+  %>
     <div class="container">
       <div class="row">
           <div class="col-sm-5 col-md-6">
           <div class="page-votacao box">
               <div class="card my-4">
-              <h4 class="card-header">Prefeito</h4>
+              <h4 class="card-header">Digite o número do seu candidato para prefeito:</h4>
               <div class="card-body">
-            <form action="index.html" method="get" class="votacao-form">
+            <form class="baseForm" action="Votar" method="get">
               <div class="form-group">                
                 <div class="input-icon">
-                  <input type="number" value="12" class="scroll" id="sender-number" class="form-control" name="numero" placeholder="Número" required>
+                    <input type="hidden" name="id" value="<% out.print(u.getId()); %>">
+                  <input type="number" class="scroll" id="sender-number" class="form-control" name="numero" placeholder="12 ou 17" required>
                 </div>
               </div> 
-              <div class="form-group">
-                <div class="mayor">
-                    </br>
-                    <img src="${contexto}static/imgs/prefeita.jpg">
-                </div>
-                
-              </div>
-              <div class="form-group">
-                <div class="input-icon">
-                  <h4 class="mayor-name">Tabata Claudia Amaral de Pontes</h4>
-                  <h5 class="party">Partido Democrático Trabalhista</h5>
                 </br>
-                <button type="submit" class="btn btn-primary">Confirmar</button>
+                <button type="submit" class="btn btn-primary">Selecionar</button>
             </form>
             </div>
               </div>               
@@ -73,22 +53,84 @@
           </div>
         </div>
 
-    </div>
-    <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
-        <div class="card my-4">
-        <h4 class="card-header">Vice-Prefeito</h4>
-        <div class="card-body">
-        <img src="${contexto}static/imgs/vice.jpg" height="300">
-        <h5 class="vice-name">Brienne de Tarth</h5>
-        <h5 class="vice-party">Casa Stark</h5>
-        </div>
-      </div>
-      </div>
-    </div>
-  </div>
   <hr>
   </section>
-  <!-- Content section End --> 
+  <%    }
+        else {%>
+  <div class="container">
+    <div class="row">
+        <div class="col-sm-5 col-md-6">
+        <div class="page-votacao box">
+            <div class="card my-4">
+            <h4 class="card-header"><%=new String(prefeito.getOficio().toString().getBytes(),"UTF-8") %></h4>
+            <div class="card-body">
+          <form class="baseForm" action="Home" method="get">
+            <div class="form-group">                
+              <div class="input-icon">
+                  <input type="hidden" name="id" value="<% out.print(u.getId()); %>">
+                  <input type="hidden" name="confirm" value="<% out.print(prefeito.getNumeroUrna()); %>">
+                  <h4>Número de Urna: <% out.print(prefeito.getNumeroUrna()); %></h4>
+              </div>
+            </div> 
+            <div class="form-group">
+              <div class="mayor">
+                  </br>
+                  <img src="${contexto}static/imgs/<% out.print(prefeito.getFoto()); %>">
+              </div>
+              
+            </div>
+            <div class="form-group">
+              <div class="input-icon">
+                <h4 class="mayor-name"><%=new String(prefeito.getNomeCandidato().toString().getBytes(),"UTF-8") %></h4>
+                <h5 class="party"><%=new String(prefeito.getPartido().toString().getBytes(),"UTF-8") %></h5>
+              </br>
+              <button type="submit" class="btn btn-primary">Confirmar</button>
+          </form>
+          </div>
+            </div>               
+          </div>
+        </div>
+      </div>
+
+  </div>
+  <div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">
+      <div class="card my-4">
+      <h4 class="card-header"><%=new String(vice.getOficio().toString().getBytes(),"UTF-8") %></h4>
+      <div class="card-body">
+      <img src="${contexto}static/imgs/<% out.print(vice.getFoto()); %>" height="300">
+      <h5 class="vice-name"><%=new String(vice.getNomeCandidato().toString().getBytes(),"UTF-8") %></h5>
+      <h5 class="vice-party"><%=new String(vice.getPartido().toString().getBytes(),"UTF-8") %></h5>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+<hr>
+</section>
+<% } %>
+<% } else { %>
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+ </br>
+</br>
+</br>
+<h1 class="mt-4">Voto não habilitado.</h1>
+</br>
+</div>
+<div class="col-sm-3"></div>
+
+
+</div>
+</div>
+</div>
+<hr>
+<% } %>
+
+
+<!-- Content section End --> 
+
 
 
 <!-- Footer -->

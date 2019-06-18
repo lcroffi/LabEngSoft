@@ -1,6 +1,8 @@
 package controller;
 
+import model.Candidato;
 import model.User;
+import service.CandidatoService;
 import service.UserService;
 
 import java.text.ParseException;
@@ -10,33 +12,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class HabilitarVoto extends HttpServlet{   
+public class Relatorio extends HttpServlet{   
     private static final long serialVersionUID = 1L;
-    private List<User> users;
     UserService usImpl = new UserService();
+    CandidatoService cImpl = new CandidatoService();
+    List<Candidato> candidatos;
 
-    public HabilitarVoto() throws ParseException {
-        users = usImpl.findAll();
+    public Relatorio() throws ParseException {
     }
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp){     
-        String id = req.getParameter("id");   
+    public void doGet(HttpServletRequest req, HttpServletResponse resp){  
+        String id = req.getParameter("id");      
         ServletContext sc = req.getServletContext();
-        req.setAttribute("eleitores", users);
+        candidatos = cImpl.findAll();
+        req.setAttribute("candidatos", candidatos);
 
         User uLogado = null;
         uLogado = usImpl.findById(Integer.parseInt(id));
         req.setAttribute("usuarioLogado", uLogado);
 
-        String habilitar = req.getParameter("habilitar");   
-        if (habilitar != null) {
-            User u1 = usImpl.findById(Integer.parseInt(habilitar));
-            u1.setAllowVote(true);
-        }
-
         try{
-        sc.getRequestDispatcher("/jsp/cadastro.jsp").forward(req, resp);            
+        sc.getRequestDispatcher("/jsp/relatorio.jsp").forward(req, resp);            
         } catch (Exception e){}
     }
 }
