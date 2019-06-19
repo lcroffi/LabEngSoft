@@ -144,9 +144,9 @@
                     </div>
                   </table>
                   
-                  <form action="index.html" method="get" class="return-form">
+                  <form action="Home" method="get" class="return-form">
                     <div class="form-group">
-                      <input type="hidden" class="form-control" value="back">
+                      <input type="hidden" name="id" value="<% out.print(u.getId()); %>">
                     </div>        
                     <button type="submit" class="btn btn-primary">Retornar</button>
                   </form>

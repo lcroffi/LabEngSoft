@@ -69,6 +69,7 @@ public class Autenticador extends HttpServlet {
    
         if (id != null) {
             uLogado = usImpl.findById(Integer.parseInt(id));
+            usImpl.isDone(Integer.parseInt(id));
             req.setAttribute("usuarioLogado", uLogado);
             
             if (confirm != null) {

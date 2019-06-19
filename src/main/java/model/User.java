@@ -6,20 +6,37 @@
 package model;
 
 import java.util.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity(name="users")
 public class User {
+    @Id
     private int id;
+    @Column(name="numero_titulo")
     private String numeroTitulo;
+    @Column(name="senha")
     private String senha;
+    @Column(name="nome")
     private String nome;
+    @Column(name="dob")
     private Date dob;
+    @Column(name="city")
     private String city;
+    @Column(name="state")
     private String state;
+    @Column(name="emissao_titulo")
     private Date emissaoTitulo;
+    @Column(name="zona")
     private int zona;
+    @Column(name="secao")
     private int secao;
+    @Column(name="allow_vote")
     private boolean allowVote;
+    @Column(name="done")
     private boolean done;
+    
     private List<Role> roles;
     
     public User(){}

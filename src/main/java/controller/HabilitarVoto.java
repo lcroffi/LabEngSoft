@@ -16,11 +16,11 @@ public class HabilitarVoto extends HttpServlet{
     UserService usImpl = new UserService();
 
     public HabilitarVoto() throws ParseException {
-        users = usImpl.findAll();
     }
 
     @Override
-    public void doGet(HttpServletRequest req, HttpServletResponse resp){     
+    public void doGet(HttpServletRequest req, HttpServletResponse resp){    
+        users = usImpl.findAll(); 
         String id = req.getParameter("id");   
         ServletContext sc = req.getServletContext();
         req.setAttribute("eleitores", users);
@@ -31,8 +31,8 @@ public class HabilitarVoto extends HttpServlet{
 
         String habilitar = req.getParameter("habilitar");   
         if (habilitar != null) {
-            User u1 = usImpl.findById(Integer.parseInt(habilitar));
-            u1.setAllowVote(true);
+            int id2 = Integer.parseInt(habilitar);
+            usImpl.AllowVote(id2);
         }
 
         try{

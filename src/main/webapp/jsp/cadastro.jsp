@@ -43,7 +43,7 @@
                   <div class="register-group">
                     <tr>
                       <td>Nome: </td>
-                      <td><%=new String(us.getNome().toString().getBytes(),"UTF-8") %></td>
+                      <td><% out.print(us.getNome());  %></td>
                     </tr>
                   </div> 
                   <div class="register-group">
@@ -55,19 +55,19 @@
                   <div class="register-group">
                       <tr>
                         <td>Município: </td>
-                        <td><%=new String(us.getCity().toString().getBytes(),"UTF-8") %></td>
+                        <td><% out.print(us.getCity());  %></td>
                       </tr>
                   </div> 
                   <div class="register-group">
                       <tr>
                         <td>Estado: </td>
-                        <td><%=new String(us.getState().toString().getBytes(),"UTF-8") %></td>
+                        <td><% out.print(us.getState());  %></td>
                       </tr>
                   </div> 
                   <div class="register-group">
                       <tr>
                         <td>Número do Título: </td>
-                        <td><%=new String(us.getNumeroTitulo().toString().getBytes(),"UTF-8") %></td>
+                        <td><% out.print(us.getNumeroTitulo());  %></td>
                       </tr>
                   </div> 
                   <div class="register-group">

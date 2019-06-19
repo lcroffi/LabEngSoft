@@ -24,7 +24,7 @@
   <!-- Content section Start --> 
   <section id="content">
   </br></br>
-  <% if (!u.getAllowVote() && !u.getDone()) {
+  <% if (u.getAllowVote() && !u.getDone()) {
 
         Candidato prefeito = (Candidato)request.getAttribute("prefeito");
         Candidato vice = (Candidato)request.getAttribute("vice");

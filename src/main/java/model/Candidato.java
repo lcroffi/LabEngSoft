@@ -1,12 +1,24 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name="candidatos")
 public class Candidato {
+    @Id
     private int id;
+    @Column(name="foto")
     private String foto;
+    @Column(name="nome_candidato")
     private String nomeCandidato;
+    @Column(name="partido")
     private String partido;
+    @Column(name="oficio")
     private String oficio;
+    @Column(name="numero_urna")
     private int numeroUrna;
+    @Column(name="votos")
     private int votos;
 
     public Candidato() {        

@@ -48,7 +48,8 @@ public class Votacao extends HttpServlet{
         String confirm = req.getParameter("confirm");     
         if (confirm != null) {
             req.setAttribute("VotoConfirmado", confirm);
-            uLogado.setDone(true);
+            int id2 = Integer.parseInt(id);
+            usImpl.isDone(id2);
             
             try{
                 sc.getRequestDispatcher("/jsp/home.jsp").forward(req, resp);            
